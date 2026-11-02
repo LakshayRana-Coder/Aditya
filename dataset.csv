@@ -1,0 +1,106 @@
+RollNo,Name,Department,Semester,Subject1,Subject2,Subject3,Subject4,Subject5,Total,Percentage,Grade
+45,"ADITYA","Computer Science & Engineering","Semester 3",100,84,76,100,34,394,78.8,B
+101,"Aditya Sharma","Information Technology","Semester 4",9,99,99,99,9,315,63,C
+102,"Diya Patel","Electronics & Communication","Semester 5",94,96,92,95,98,475,95,A+
+103,"Rahul Verma","Mechanical Engineering","Semester 6",75,80,72,85,78,390,78,B
+104,"Sneha Reddy","Civil Engineering","Semester 3",88,84,90,86,92,440,88,A
+105,"Aarav Gupta","Computer Science & Engineering","Semester 4",95,91,94,88,92,460,92,A+
+106,"Ananya Iyer","Information Technology","Semester 5",90,92,88,95,95,460,92,A+
+107,"Vikram Malhotra","Electronics & Communication","Semester 6",68,72,70,75,65,350,70,B
+108,"Pooja Joshi","Mechanical Engineering","Semester 3",82,85,80,84,89,420,84,A
+109,"Rohan Nair","Civil Engineering","Semester 4",78,82,85,80,75,400,80,A
+110,"Ishita Sen","Computer Science & Engineering","Semester 5",91,89,93,87,90,450,90,A+
+111,"Karan Singh","Information Technology","Semester 6",60,65,58,62,70,315,63,C
+112,"Meera Das","Electronics & Communication","Semester 3",88,86,84,90,82,430,86,A
+113,"Siddharth Jain","Mechanical Engineering","Semester 4",98,97,99,96,98,488,97.6,A+
+114,"Kavya Kapoor","Civil Engineering","Semester 5",94,96,92,95,98,475,95,A+
+115,"Nikhil Bhatia","Computer Science & Engineering","Semester 6",70,75,68,72,80,365,73,B
+116,"Riya Bhatia","Information Technology","Semester 3",82,56,56,75,58,327,65.4,C
+117,"Varun Saxena","Electronics & Communication","Semester 4",62,85,75,58,87,367,73.4,B
+118,"Tanvi Bansal","Mechanical Engineering","Semester 5",61,62,74,65,68,330,66,C
+119,"Kunal Choudhury","Civil Engineering","Semester 6",62,75,51,89,78,355,71,B
+120,"Neha Chauhan","Computer Science & Engineering","Semester 3",69,57,54,84,89,353,70.6,B
+121,"Siddharth Mishra","Information Technology","Semester 4",76,52,84,57,94,363,72.6,B
+122,"Shreya Pandey","Electronics & Communication","Semester 5",83,75,59,52,65,334,66.8,C
+123,"Harsh Tiwari","Mechanical Engineering","Semester 6",78,90,50,76,89,383,76.6,B
+124,"Anjali Yadav","Civil Engineering","Semester 3",86,68,57,51,52,314,62.8,C
+125,"Aman Agarwal","Computer Science & Engineering","Semester 4",88,80,55,62,87,372,74.4,B
+126,"Simran Pillai","Information Technology","Semester 5",64,81,57,52,79,333,66.6,C
+127,"Pranav Menon","Electronics & Communication","Semester 6",75,52,70,84,80,361,72.2,B
+128,"Divya Bhatt","Mechanical Engineering","Semester 3",60,50,67,63,53,293,58.6,D
+129,"Yash Trivedi","Civil Engineering","Semester 4",85,53,72,50,89,349,69.8,C
+130,"Priya Banerjee","Computer Science & Engineering","Semester 5",71,75,74,50,90,360,72,B
+131,"Deepak Deshmukh","Information Technology","Semester 6",50,50,53,82,51,286,57.2,D
+132,"Swati Kulkarni","Electronics & Communication","Semester 3",94,95,72,68,80,409,81.8,A
+133,"Gaurav Shinde","Mechanical Engineering","Semester 4",52,68,56,71,88,335,67,C
+134,"Pallavi More","Civil Engineering","Semester 5",76,69,64,94,78,381,76.2,B
+135,"Abhishek Patil","Computer Science & Engineering","Semester 6",86,50,93,96,66,391,78.2,B
+136,"Sakshi Hegde","Information Technology","Semester 3",84,57,55,72,66,334,66.8,C
+137,"Rohit Gowda","Electronics & Communication","Semester 4",88,57,56,60,78,339,67.8,C
+138,"Megha Bhat","Mechanical Engineering","Semester 5",75,98,87,82,85,427,85.4,A
+139,"Tarun Kamath","Civil Engineering","Semester 6",64,77,98,81,51,371,74.2,B
+140,"Kriti Prabhu","Computer Science & Engineering","Semester 3",66,95,51,60,63,335,67,C
+141,"Manish Jain","Information Technology","Semester 4",51,60,79,70,54,314,62.8,C
+142,"Komal Ghosh","Electronics & Communication","Semester 5",98,55,55,65,65,338,67.6,C
+143,"Rishabh Roy","Mechanical Engineering","Semester 6",86,90,50,52,91,369,73.8,B
+144,"Jyoti Banerjee","Civil Engineering","Semester 3",93,61,95,91,63,403,80.6,A
+145,"Kartik Dutta","Computer Science & Engineering","Semester 4",76,81,80,59,64,360,72,B
+146,"Shalini Mukherjee","Information Technology","Semester 5",58,51,61,95,98,363,72.6,B
+147,"Ayush Chatterjee","Electronics & Communication","Semester 6",88,56,93,59,64,360,72,B
+148,"Ritu Bose","Mechanical Engineering","Semester 3",77,77,84,55,79,372,74.4,B
+149,"Mayank Dey","Civil Engineering","Semester 4",69,93,71,67,97,397,79.4,B
+150,"Preeti Saha","Computer Science & Engineering","Semester 5",72,76,96,89,56,389,77.8,B
+151,"Vivek Sharma","Information Technology","Semester 6",55,50,58,96,85,344,68.8,C
+152,"Akanksha Patel","Electronics & Communication","Semester 3",69,78,69,56,94,366,73.2,B
+153,"Sameer Verma","Mechanical Engineering","Semester 4",97,93,58,66,76,390,78,B
+154,"Payal Reddy","Civil Engineering","Semester 5",80,96,90,86,63,415,83,A
+155,"Alok Gupta","Computer Science & Engineering","Semester 6",66,75,89,62,93,385,77,B
+156,"Sonali Iyer","Information Technology","Semester 3",82,59,63,61,90,355,71,B
+157,"Mohit Malhotra","Electronics & Communication","Semester 4",81,54,70,89,93,387,77.4,B
+158,"Aarti Joshi","Mechanical Engineering","Semester 5",88,96,96,72,93,445,89,A
+159,"Rajat Nair","Civil Engineering","Semester 6",97,57,78,60,81,373,74.6,B
+160,"Shruti Sen","Computer Science & Engineering","Semester 3",74,84,55,89,67,369,73.8,B
+161,"Akash Singh","Information Technology","Semester 4",75,85,59,75,88,382,76.4,B
+162,"Rashmi Das","Electronics & Communication","Semester 5",78,59,95,52,52,336,67.2,C
+163,"Harish Rao","Mechanical Engineering","Semester 6",60,65,58,64,63,310,62,C
+164,"Bhavna Mehta","Civil Engineering","Semester 3",93,73,68,72,87,393,78.6,B
+165,"Tushar Kapoor","Computer Science & Engineering","Semester 4",82,98,67,91,65,403,80.6,A
+166,"Barkha Bhatia","Information Technology","Semester 5",58,95,79,80,68,380,76,B
+167,"Suraj Saxena","Electronics & Communication","Semester 6",96,53,73,93,65,380,76,B
+168,"Nandini Bansal","Mechanical Engineering","Semester 3",95,93,93,50,64,395,79,B
+169,"Chetan Choudhury","Civil Engineering","Semester 4",78,50,93,70,83,374,74.8,B
+170,"Dolly Chauhan","Computer Science & Engineering","Semester 5",82,98,64,96,86,426,85.2,A
+171,"Bhavik Mishra","Information Technology","Semester 6",51,66,82,52,83,334,66.8,C
+172,"Vandana Pandey","Electronics & Communication","Semester 3",75,67,66,60,79,347,69.4,C
+173,"Akhil Tiwari","Mechanical Engineering","Semester 4",81,79,65,82,54,361,72.2,B
+174,"Radhika Yadav","Civil Engineering","Semester 5",56,91,64,97,67,375,75,B
+175,"Dev Agarwal","Computer Science & Engineering","Semester 6",50,78,67,57,58,310,62,C
+176,"Mansi Pillai","Information Technology","Semester 3",81,55,96,58,82,372,74.4,B
+177,"Lokesh Menon","Electronics & Communication","Semester 4",59,81,81,92,67,380,76,B
+178,"Chetna Bhatt","Mechanical Engineering","Semester 5",80,70,70,59,88,367,73.4,B
+179,"Sunil Trivedi","Civil Engineering","Semester 6",77,76,82,70,82,387,77.4,B
+180,"Garima Banerjee","Computer Science & Engineering","Semester 3",97,84,61,65,76,383,76.6,B
+181,"Pankaj Deshmukh","Information Technology","Semester 4",89,83,65,78,86,401,80.2,A
+182,"Chhavi Kulkarni","Electronics & Communication","Semester 5",72,98,74,92,52,388,77.6,B
+183,"Sachin Shinde","Mechanical Engineering","Semester 6",70,70,58,77,69,344,68.8,C
+184,"Dimple More","Civil Engineering","Semester 3",50,96,72,65,73,356,71.2,B
+185,"Vishal Patil","Computer Science & Engineering","Semester 4",85,70,54,59,89,357,71.4,B
+186,"Karishma Hegde","Information Technology","Semester 5",72,94,96,74,60,396,79.2,B
+187,"Jatin Gowda","Electronics & Communication","Semester 6",96,93,81,81,91,442,88.4,A
+188,"Madhu Bhat","Mechanical Engineering","Semester 3",74,65,53,55,94,341,68.2,C
+189,"Kapil Kamath","Civil Engineering","Semester 4",80,95,77,57,68,377,75.4,B
+190,"Monika Prabhu","Computer Science & Engineering","Semester 5",56,68,55,50,81,310,62,C
+191,"Girish Jain","Information Technology","Semester 6",51,61,94,90,90,386,77.2,B
+192,"Nupur Ghosh","Electronics & Communication","Semester 3",69,79,56,88,64,356,71.2,B
+193,"Bharat Roy","Mechanical Engineering","Semester 4",76,52,50,81,54,313,62.6,C
+194,"Prachi Banerjee","Civil Engineering","Semester 5",75,88,75,85,94,417,83.4,A
+195,"Amit Dutta","Computer Science & Engineering","Semester 6",83,93,67,69,92,404,80.8,A
+196,"Anita Mukherjee","Information Technology","Semester 3",88,91,96,89,82,446,89.2,A
+197,"Ashish Chatterjee","Electronics & Communication","Semester 4",54,89,95,91,59,388,77.6,B
+198,"Shivani Bose","Mechanical Engineering","Semester 5",84,97,89,89,71,430,86,A
+199,"Lalit Dey","Civil Engineering","Semester 6",94,59,63,90,67,373,74.6,B
+200,"Juhi Saha","Computer Science & Engineering","Semester 3",78,95,94,52,91,410,82,A
+201,"Aditya","Information Technology","Semester 4",21,34,11,89,6,161,32.2,F
+202,"Varun Reddy","Electronics & Communication","Semester 5",88,92,95,90,85,450,90,A+
+203,"Rohan Mehta","Mechanical Engineering","Semester 6",80,85,90,88,92,435,87,A
+213,"ADIDI","Computer Science & Engineering","Semester 3",43,99,99,99,99,439,87.8,A

@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Ranking & Result Management System (SRRMS) | Full-Stack Portal</title>
+    <!-- Google Fonts: Inter & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <!-- Chart.js CDN for Analytics Reports -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="app-shell">
+        <!-- =================================================================
+             Sidebar Navigation (10 Dynamic Views)
+             ================================================================= -->
+        <aside class="app-sidebar" id="app-sidebar">
+            <div class="sidebar-brand-box">
+                <a href="#" class="brand-emblem-wrap" data-nav="dashboard">
+                    <div class="brand-emblem">S</div>
+                    <div class="brand-meta">
+                        <h1>SRRMS</h1>
+                        <span>Academic Suite</span>
+                    </div>
+                </a>
+            </div>
+
+            <nav class="sidebar-nav-scroll">
+                <div class="nav-section-title">Core Modules</div>
+                <a class="nav-item-btn active" data-nav="dashboard">
+                    <span class="nav-icon-wrap">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+                    </span>
+                    <span>Dashboard</span>
+                </a>
+                <a class="nav-item-btn" data-nav="students">
+                    <span class="nav-icon-wrap">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                    </span>
+                    <span>Students</span>
+                    <span class="nav-counter-tag" id="sidebar-cohort-count">104</span>
+                </a>
+                <a class="nav-item-btn" data-nav="search">
+                    <span class="nav-icon-wrap">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                    </span>
+                    <span>Search Student</span>
+                </a>
+
+                <div class="nav-section-title">Operations</div>
+                <a class="nav-item-btn" data-nav="add-student">
+                    <span class="nav-icon-wrap">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><line x1="19" y1="8" x2="19" y2="14"></line><line x1="22" y1="11" x2="16" y2="11"></line></svg>
+                    </span>
+                    <span>Add Student</span>
+                </a>
+                <a class="nav-item-btn" data-nav="update-marks">
+                    <span class="nav-icon-wrap">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+                    </span>
+                    <span>Update Marks</span>
+                </a>
+
+                <div class="nav-section-title">Academic Records</div>
+                <a class="nav-item-btn" data-nav="rankings">
+                    <span class="nav-icon-wrap">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path><path d="M4 22h16"></path><path d="M10 14.66V17c0 .55-.45 1-1 1H7c-.55 0-1-.45-1-1v-2.34"></path><path d="M18 14.66V17c0 .55-.45 1-1 1h-2c-.55 0-1-.45-1-1v-2.34"></path><path d="M10 14h4a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2z"></path></svg>
+                    </span>
+                    <span>Rankings</span>
+                </a>
+                <a class="nav-item-btn" data-nav="result-card">
+                    <span class="nav-icon-wrap">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                    </span>
+                    <span>Result Card</span>
+                </a>
+                <a class="nav-item-btn" data-nav="reports">
+                    <span class="nav-icon-wrap">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+                    </span>
+                    <span>Reports</span>
+                </a>
+
+                <div class="nav-section-title">DSA & Engine Specs</div>
+                <a class="nav-item-btn" data-nav="hash-structure">
+                    <span class="nav-icon-wrap">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"></polyline><line x1="12" y1="19" x2="20" y2="19"></line></svg>
+                    </span>
+                    <span>Data Structure (Hash)</span>
+                </a>
+                <a class="nav-item-btn" data-nav="about-system">
+                    <span class="nav-icon-wrap">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                    </span>
+                    <span>About System</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-bottom-bar">
+                <div class="status-indicator-pill">
+                    <div class="pulse-dot"></div>
+                    <div class="status-text">
+                        <strong id="db-connection-text">SQLite Database Active</strong>
+                        <span>dataset.csv Synced</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- =================================================================
+             Main Content Stage
+             ================================================================= -->
+        <div class="app-stage">
+            <!-- Header Topbar -->
+            <header class="app-topbar">
+                <div class="topbar-start">
+                    <button class="mobile-hamburger" id="mobile-toggle-btn" title="Toggle Sidebar">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+                    </button>
+                    <div class="stage-title-wrap">
+                        <h2 id="view-title">Executive Dashboard</h2>
+                        <p id="view-desc">Unified academic registry, hashing retrieval, and competition ranking engine</p>
+                    </div>
+                </div>
+
+                <div class="topbar-end">
+                    <div class="quick-roll-input-box">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                        <input type="text" id="topbar-search-input" placeholder="Quick Search by Roll No...">
+                    </div>
+                    <button class="btn-cta" id="btn-topbar-add">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                        <span>Add Student</span>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Viewport Stage -->
+            <main class="stage-viewport">
+
+                <!-- =========================================================
+                     1. DASHBOARD VIEW
+                     ========================================================= -->
+                <section class="view-panel active" id="view-dashboard">
+                    <!-- 4 Glow KPI Cards -->
+                    <div class="kpi-row">
+                        <div class="kpi-card cyan">
+                            <div class="kpi-icon-pod">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                            </div>
+                            <div>
+                                <div class="kpi-label">Total Students</div>
+                                <div class="kpi-val" id="kpi-total-students">0</div>
+                                <div class="kpi-sub">Enrolled in dataset.csv</div>
+                            </div>
+                        </div>
+
+                        <div class="kpi-card violet">
+                            <div class="kpi-icon-pod">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                            </div>
+                            <div>
+                                <div class="kpi-label">Average Percentage</div>
+                                <div class="kpi-val" id="kpi-avg-pct">0.00%</div>
+                                <div class="kpi-sub" id="kpi-pass-rate">0% Pass Division</div>
+                            </div>
+                        </div>
+
+                        <div class="kpi-card amber">
+                            <div class="kpi-icon-pod">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                            </div>
+                            <div>
+                                <div class="kpi-label">Highest Score</div>
+                                <div class="kpi-val" id="kpi-highest-marks">0 / 500</div>
+                                <div class="kpi-sub" id="kpi-highest-holder">Top aggregate score</div>
+                            </div>
+                        </div>
+
+                        <div class="kpi-card emerald">
+                            <div class="kpi-icon-pod">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path><path d="M4 22h16"></path><path d="M10 14h4a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2z"></path></svg>
+                            </div>
+                            <div>
+                                <div class="kpi-label">Rank #1 Champion</div>
+                                <div class="kpi-val" id="kpi-champion-name">---</div>
+                                <div class="kpi-sub" id="kpi-champion-score">Rank 1 • 0%</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dual Grid: Top 5 & Hash Telemetry -->
+                    <div class="dual-grid">
+                        <!-- Top 5 Rankers -->
+                        <div class="glass-box">
+                            <div class="glass-box-head">
+                                <div class="head-title-group">
+                                    <h3>Top 5 Rank Holders</h3>
+                                    <span class="tech-chip indigo">Custom Merge Sort O(n log n)</span>
+                                </div>
+                                <a href="#" class="nav-item-btn" data-nav="rankings" style="padding: 4px 10px; font-size: 0.8rem;">Full Leaderboard &rarr;</a>
+                            </div>
+                            <div class="glass-box-body" style="padding: 0;">
+                                <div class="table-responsive">
+                                    <table class="academic-table">
+                                        <thead>
+                                            <tr>
+                                                <th style="width: 70px;">Rank</th>
+                                                <th>Student Name</th>
+                                                <th>Roll No</th>
+                                                <th>Department</th>
+                                                <th>Total</th>
+                                                <th>Percentage</th>
+                                                <th>Grade</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="dash-top5-tbody">
+                                            <!-- Injected dynamically -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Hash Table Status Widget -->
+                        <div class="glass-box">
+                            <div class="glass-box-head">
+                                <div class="head-title-group">
+                                    <h3>Hash Table Status</h3>
+                                    <span class="tech-chip cyan">O(1) Avg</span>
+                                </div>
+                                <a href="#" class="nav-item-btn" data-nav="hash-structure" style="padding: 4px 10px; font-size: 0.8rem;">Visualizer &rarr;</a>
+                            </div>
+                            <div class="glass-box-body">
+                                <div class="hash-stats-quad">
+                                    <div class="hash-quad-card">
+                                        <div class="hash-quad-title">Total Buckets</div>
+                                        <div class="hash-quad-val" id="dash-hash-m">31</div>
+                                    </div>
+                                    <div class="hash-quad-card">
+                                        <div class="hash-quad-title">Occupied Slots</div>
+                                        <div class="hash-quad-val" id="dash-hash-occupied">0</div>
+                                    </div>
+                                    <div class="hash-quad-card">
+                                        <div class="hash-quad-title">Load Factor (&alpha;)</div>
+                                        <div class="hash-quad-val" id="dash-hash-alpha">0.00</div>
+                                    </div>
+                                    <div class="hash-quad-card">
+                                        <div class="hash-quad-title">Collisions</div>
+                                        <div class="hash-quad-val" id="dash-hash-collisions" style="color: var(--accent-amber);">0</div>
+                                    </div>
+                                </div>
+
+                                <div class="mini-bucket-board">
+                                    <div class="mini-board-head">
+                                        <span>Bucket Density Array (M=31)</span>
+                                        <span>Separate Chaining</span>
+                                    </div>
+                                    <div class="mini-cell-track" id="dash-mini-bucket-track">
+                                        <!-- 31 cells rendered dynamically -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Lower Grid: Audit Trail & Quick Actions -->
+                    <div class="dual-grid" style="margin-bottom: 0;">
+                        <!-- Audit Trail -->
+                        <div class="glass-box">
+                            <div class="glass-box-head">
+                                <div class="head-title-group">
+                                    <h3>Recent Audit Activities</h3>
+                                    <span class="tech-chip cyan">SQLite Logs</span>
+                                </div>
+                                <button class="btn-action-ghost" id="btn-clear-audit" style="padding: 4px 10px; font-size: 0.74rem;">Clear Trail</button>
+                            </div>
+                            <div class="glass-box-body">
+                                <div class="audit-stream" id="dash-audit-stream">
+                                    <!-- Injected dynamically -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Quick Actions -->
+                        <div class="glass-box">
+                            <div class="glass-box-head">
+                                <div class="head-title-group">
+                                    <h3>Quick Actions</h3>
+                                </div>
+                            </div>
+                            <div class="glass-box-body" style="padding: 16px;">
+                                <div style="display: flex; flex-direction: column; gap: 10px;">
+                                    <a class="nav-item-btn quick-card" data-nav="search" style="flex-direction: row; text-align: left; padding: 12px 16px;">
+                                        <div class="quick-icon-disk">
+                                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                                        </div>
+                                        <div>
+                                            <div class="quick-title">Search Student</div>
+                                            <div class="quick-subtitle">O(1) hash table lookup by roll no</div>
+                                        </div>
+                                    </a>
+                                    <a class="nav-item-btn quick-card" data-nav="add-student" style="flex-direction: row; text-align: left; padding: 12px 16px;">
+                                        <div class="quick-icon-disk">
+                                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><line x1="19" y1="8" x2="19" y2="14"></line><line x1="22" y1="11" x2="16" y2="11"></line></svg>
+                                        </div>
+                                        <div>
+                                            <div class="quick-title">Add Student</div>
+                                            <div class="quick-subtitle">Enroll record into dataset.csv</div>
+                                        </div>
+                                    </a>
+                                    <a class="nav-item-btn quick-card" data-nav="update-marks" style="flex-direction: row; text-align: left; padding: 12px 16px;">
+                                        <div class="quick-icon-disk">
+                                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+                                        </div>
+                                        <div>
+                                            <div class="quick-title">Update Marks</div>
+                                            <div class="quick-subtitle">Recalculate ranks in real-time</div>
+                                        </div>
+                                    </a>
+                                    <a class="nav-item-btn quick-card" data-nav="rankings" style="flex-direction: row; text-align: left; padding: 12px 16px;">
+                                        <div class="quick-icon-disk">
+                                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path><path d="M4 22h16"></path><path d="M10 14h4a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2z"></path></svg>
+                                        </div>
+                                        <div>
+                                            <div class="quick-title">View Rankings</div>
+                                            <div class="quick-subtitle">Custom Merge Sort competition ties</div>
+                                        </div>
+                                    </a>
+                                    <a class="nav-item-btn quick-card" data-nav="result-card" style="flex-direction: row; text-align: left; padding: 12px 16px;">
+                                        <div class="quick-icon-disk">
+                                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+                                        </div>
+                                        <div>
+                                            <div class="quick-title">Generate Result Card</div>
+                                            <div class="quick-subtitle">Print official university transcript</div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- =========================================================
+                     2. STUDENTS DIRECTORY VIEW
+                     ========================================================= -->
+                <section class="view-panel" id="view-students">
+                    <div class="glass-box">
+                        <div class="glass-box-head" style="flex-wrap: wrap; gap: 14px;">
+                            <div class="head-title-group">
+                                <h3>Student Registry</h3>
+                                <span class="tech-chip cyan" id="students-badge-count">104 Records</span>
+                            </div>
+                            <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+                                <input type="text" class="field-input" id="dir-search-box" placeholder="Filter by Name or Roll..." style="width: 220px; padding: 8px 14px;">
+                                <select class="field-select" id="dir-dept-select" style="width: 210px; padding: 8px 14px;">
+                                    <option value="">All Departments</option>
+                                    <option value="Computer Science & Engineering">Computer Science & Engg</option>
+                                    <option value="Information Technology">Information Technology</option>
+                                    <option value="Electronics & Communication">Electronics & Comm</option>
+                                    <option value="Mechanical Engineering">Mechanical Engineering</option>
+                                    <option value="Civil Engineering">Civil Engineering</option>
+                                </select>
+                                <select class="field-select" id="dir-sem-select" style="width: 140px; padding: 8px 14px;">
+                                    <option value="">All Semesters</option>
+                                    <option value="Semester 1">Semester 1</option>
+                                    <option value="Semester 2">Semester 2</option>
+                                    <option value="Semester 3">Semester 3</option>
+                                    <option value="Semester 4">Semester 4</option>
+                                    <option value="Semester 5">Semester 5</option>
+                                    <option value="Semester 6">Semester 6</option>
+                                    <option value="Semester 7">Semester 7</option>
+                                    <option value="Semester 8">Semester 8</option>
+                                </select>
+                                <button class="btn-action-ghost" id="btn-export-dataset" title="Download dataset.csv">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                                    <span>Download CSV</span>
+                                </button>
+                                <button class="btn-action-ghost" id="btn-reseed-dataset" title="Reset dataset to default" style="color: var(--accent-amber);">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"></polyline><polyline points="23 20 23 14 17 14"></polyline><path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"></path></svg>
+                                    <span>Reset Data</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="glass-box-body" style="padding: 0;">
+                            <div class="table-responsive">
+                                <table class="academic-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Roll No</th>
+                                            <th>Full Name</th>
+                                            <th>Department</th>
+                                            <th>Semester</th>
+                                            <th>DSA</th>
+                                            <th>DBMS</th>
+                                            <th>CN</th>
+                                            <th>OS</th>
+                                            <th>SE</th>
+                                            <th>Total</th>
+                                            <th>%</th>
+                                            <th>Grade</th>
+                                            <th style="text-align: right;">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="directory-tbody">
+                                        <!-- Injected dynamically -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- =========================================================
+                     3. SEARCH STUDENT VIEW (Hash Telemetry Studio)
+                     ========================================================= -->
+                <section class="view-panel" id="view-search">
+                    <div class="glass-box" style="margin-bottom: 24px;">
+                        <div class="glass-box-head">
+                            <div class="head-title-group">
+                                <h3>Hash-Based Student Query Studio</h3>
+                                <span class="tech-chip cyan">O(1) Separate Chaining</span>
+                            </div>
+                        </div>
+                        <div class="glass-box-body">
+                            <div style="display: flex; gap: 14px; align-items: center; max-width: 680px;">
+                                <div style="flex: 1;">
+                                    <input type="text" class="field-input" id="search-main-input" placeholder="Enter Roll Number (e.g. 102) or Student Name...">
+                                </div>
+                                <button class="btn-cta" id="btn-execute-search-main">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                                    <span>Execute Query</span>
+                                </button>
+                            </div>
+
+                            <div style="margin-top: 14px; font-size: 0.8rem; color: var(--text-muted); display: flex; gap: 24px;">
+                                <span><strong>Numeric Query:</strong> Custom Hash Table $O(1)$ Average Lookup</span>
+                                <span><strong>Text Query:</strong> Case-Insensitive String Scan $O(n)$</span>
+                            </div>
+
+                            <!-- Live Telemetry Pill -->
+                            <div id="search-telemetry-box" style="display: none; margin-top: 18px; padding: 14px 18px; border-radius: var(--radius-md); background: rgba(6, 182, 212, 0.08); border: 1px solid rgba(6, 182, 212, 0.25); font-family: var(--font-code); font-size: 0.85rem;">
+                                <!-- Populated dynamically -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Search Result View Container -->
+                    <div id="search-profile-deck">
+                        <div class="glass-box" style="text-align: center; padding: 48px 24px; color: var(--text-muted);">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="margin-bottom: 12px; opacity: 0.5;"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                            <p style="font-size: 0.95rem;">Enter a Roll Number to perform an $O(1)$ Hash Table retrieval, or search by student name.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- =========================================================
+                     4. ADD STUDENT VIEW
+                     ========================================================= -->
+                <section class="view-panel" id="view-add-student">
+                    <div class="form-duo-stage">
+                        <!-- Left: Enrollment Form -->
+                        <div class="glass-box">
+                            <div class="glass-box-head">
+                                <div class="head-title-group">
+                                    <h3>Student Enrollment Form</h3>
+                                    <span class="tech-chip indigo">Auto-Syncs dataset.csv</span>
+                                </div>
+                            </div>
+                            <div class="glass-box-body">
+                                <form id="form-enroll-student">
+                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                                        <div class="form-field">
+                                            <label class="field-label">Roll Number <span class="req">*</span></label>
+                                            <input type="number" class="field-input" id="enroll-rollNo" placeholder="e.g. 215" required min="1">
+                                        </div>
+                                        <div class="form-field">
+                                            <label class="field-label">Full Name <span class="req">*</span></label>
+                                            <input type="text" class="field-input" id="enroll-name" placeholder="e.g. Aarav Sharma" required>
+                                        </div>
+                                    </div>
+
+                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                                        <div class="form-field">
+                                            <label class="field-label">Department <span class="req">*</span></label>
+                                            <select class="field-select" id="enroll-dept" required>
+                                                <option value="Computer Science & Engineering">Computer Science & Engineering</option>
+                                                <option value="Information Technology">Information Technology</option>
+                                                <option value="Electronics & Communication">Electronics & Communication</option>
+                                                <option value="Mechanical Engineering">Mechanical Engineering</option>
+                                                <option value="Civil Engineering">Civil Engineering</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-field">
+                                            <label class="field-label">Semester <span class="req">*</span></label>
+                                            <select class="field-select" id="enroll-sem" required>
+                                                <option value="Semester 1">Semester 1</option>
+                                                <option value="Semester 2">Semester 2</option>
+                                                <option value="Semester 3" selected>Semester 3</option>
+                                                <option value="Semester 4">Semester 4</option>
+                                                <option value="Semester 5">Semester 5</option>
+                                                <option value="Semester 6">Semester 6</option>
+                                                <option value="Semester 7">Semester 7</option>
+                                                <option value="Semester 8">Semester 8</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div style="margin: 22px 0 12px; font-weight: 700; font-size: 0.85rem; color: var(--accent-cyan); text-transform: uppercase; letter-spacing: 0.08em;">
+                                        Subject Marks (Max 100 Each)
+                                    </div>
+
+                                    <div class="subject-grid-inputs">
+                                        <div class="form-field">
+                                            <label class="field-label">Sub 1: Data Structures</label>
+                                            <input type="number" class="field-input enroll-mark" id="enroll-m1" value="75" min="0" max="100" required>
+                                        </div>
+                                        <div class="form-field">
+                                            <label class="field-label">Sub 2: Database Systems</label>
+                                            <input type="number" class="field-input enroll-mark" id="enroll-m2" value="80" min="0" max="100" required>
+                                        </div>
+                                        <div class="form-field">
+                                            <label class="field-label">Sub 3: Computer Networks</label>
+                                            <input type="number" class="field-input enroll-mark" id="enroll-m3" value="78" min="0" max="100" required>
+                                        </div>
+                                        <div class="form-field">
+                                            <label class="field-label">Sub 4: Operating Systems</label>
+                                            <input type="number" class="field-input enroll-mark" id="enroll-m4" value="85" min="0" max="100" required>
+                                        </div>
+                                        <div class="form-field" style="grid-column: span 2;">
+                                            <label class="field-label">Sub 5: Software Engineering</label>
+                                            <input type="number" class="field-input enroll-mark" id="enroll-m5" value="82" min="0" max="100" required>
+                                        </div>
+                                    </div>
+
+                                    <div style="display: flex; gap: 14px; margin-top: 14px;">
+                                        <button type="submit" class="btn-cta" style="padding: 12px 26px; font-size: 0.92rem;">
+                                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                                            <span>Enroll & Commit to Database</span>
+                                        </button>
+                                        <button type="reset" class="btn-action-ghost" style="padding: 12px 22px;">Reset</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        <!-- Right: Live Predictive Card -->
+                        <div class="realtime-preview-card">
+                            <div class="preview-badge-avatar" id="enroll-preview-avatar">?</div>
+                            <h3 id="enroll-preview-name" style="color: var(--text-primary); font-size: 1.25rem; font-weight: 800; margin-bottom: 2px;">Candidate Name</h3>
+                            <p id="enroll-preview-meta" style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 20px;">Roll No: --- • Dept: ---</p>
+
+                            <div class="preview-stat-line">
+                                <span style="color: var(--text-muted);">Total Aggregate</span>
+                                <span style="font-weight: 700; color: var(--text-primary);" id="enroll-preview-total">400 / 500</span>
+                            </div>
+                            <div class="preview-stat-line">
+                                <span style="color: var(--text-muted);">Percentage</span>
+                                <span style="font-weight: 700; color: var(--text-primary);" id="enroll-preview-pct">80.00%</span>
+                            </div>
+                            <div class="preview-stat-line">
+                                <span style="color: var(--text-muted);">Projected Grade</span>
+                                <span style="font-weight: 800;" id="enroll-preview-grade"><span class="grade-pill grade-A">A</span></span>
+                            </div>
+                            <div class="preview-stat-line">
+                                <span style="color: var(--text-muted);">Result Classification</span>
+                                <span style="font-weight: 800; color: var(--accent-green);" id="enroll-preview-status">PASS</span>
+                            </div>
+
+                            <div style="margin-top: 22px; padding: 14px; background: var(--bg-card-subtle); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); font-size: 0.76rem; color: var(--text-muted); line-height: 1.45;">
+                                <strong>Database Architecture:</strong> Transactionally committed to SQLite table <code>students</code> and instantly synced to <code>dataset.csv</code>.
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- =========================================================
+                     5. UPDATE MARKS VIEW
+                     ========================================================= -->
+                <section class="view-panel" id="view-update-marks">
+                    <div class="glass-box" style="max-width: 820px; margin: 0 auto;">
+                        <div class="glass-box-head">
+                            <div class="head-title-group">
+                                <h3>Score Revision & Delta Audit</h3>
+                                <span class="tech-chip indigo">Hash Lookup & SQLite Sync</span>
+                            </div>
+                        </div>
+                        <div class="glass-box-body">
+                            <!-- Roll Query Step -->
+                            <div style="display: flex; gap: 14px; margin-bottom: 24px; align-items: flex-end;">
+                                <div style="flex: 1;">
+                                    <label class="field-label">Enter Roll Number to Retrieve Record</label>
+                                    <input type="number" class="field-input" id="update-query-roll" placeholder="e.g. 102">
+                                </div>
+                                <button class="btn-cta" id="btn-retrieve-for-update" style="padding: 12px 22px;">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                                    <span>Retrieve Record</span>
+                                </button>
+                            </div>
+
+                            <!-- Editable Score Form -->
+                            <form id="form-update-marks" style="display: none;">
+                                <div style="padding: 18px; border-radius: var(--radius-md); background: var(--bg-card-subtle); border: 1px solid var(--border-subtle); margin-bottom: 22px; display: flex; justify-content: space-between; align-items: center;">
+                                    <div>
+                                        <h4 id="update-target-name" style="font-size: 1.15rem; color: var(--text-primary); font-weight: 700;">Diya Patel</h4>
+                                        <p id="update-target-meta" style="font-size: 0.84rem; color: var(--text-muted);">Roll: 102 • Electronics & Communication • Semester 5</p>
+                                    </div>
+                                    <div style="text-align: right;">
+                                        <div style="font-size: 0.74rem; color: var(--text-muted); text-transform: uppercase;">CURRENT SCORE</div>
+                                        <div id="update-target-score" style="font-size: 1.35rem; font-weight: 800; color: var(--text-primary);">475 / 500</div>
+                                    </div>
+                                </div>
+
+                                <div class="subject-grid-inputs">
+                                    <div class="form-field">
+                                        <label class="field-label">Sub 1: Data Structures</label>
+                                        <input type="number" class="field-input update-mark-field" id="rev-m1" min="0" max="100" required>
+                                    </div>
+                                    <div class="form-field">
+                                        <label class="field-label">Sub 2: Database Systems</label>
+                                        <input type="number" class="field-input update-mark-field" id="rev-m2" min="0" max="100" required>
+                                    </div>
+                                    <div class="form-field">
+                                        <label class="field-label">Sub 3: Computer Networks</label>
+                                        <input type="number" class="field-input update-mark-field" id="rev-m3" min="0" max="100" required>
+                                    </div>
+                                    <div class="form-field">
+                                        <label class="field-label">Sub 4: Operating Systems</label>
+                                        <input type="number" class="field-input update-mark-field" id="rev-m4" min="0" max="100" required>
+                                    </div>
+                                    <div class="form-field" style="grid-column: span 2;">
+                                        <label class="field-label">Sub 5: Software Engineering</label>
+                                        <input type="number" class="field-input update-mark-field" id="rev-m5" min="0" max="100" required>
+                                    </div>
+                                </div>
+
+                                <!-- Delta Calculation Banner -->
+                                <div style="display: flex; justify-content: space-between; align-items: center; padding: 16px 20px; border-radius: var(--radius-md); background: #eff6ff; border: 1px solid #bfdbfe; margin-top: 10px;">
+                                    <div>
+                                        <span style="font-size: 0.85rem; color: var(--text-secondary);">Revised Total: </span>
+                                        <strong id="update-recalc-total" style="font-size: 1.15rem; color: var(--text-primary);">---</strong>
+                                        <span id="update-recalc-delta" style="margin-left: 10px; font-size: 0.85rem; font-weight: 800;"></span>
+                                    </div>
+                                    <div>
+                                        <span style="font-size: 0.85rem; color: var(--text-secondary);">New Grade: </span>
+                                        <strong id="update-recalc-grade" style="color: var(--accent-green); font-weight: 800;">---</strong>
+                                    </div>
+                                </div>
+
+                                <div style="display: flex; gap: 14px; margin-top: 22px;">
+                                    <button type="submit" class="btn-cta" style="padding: 12px 26px;">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
+                                        <span>Commit Score Updates</span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- =========================================================
+                     6. RANKINGS VIEW
+                     ========================================================= -->
+                <section class="view-panel" id="view-rankings">
+                    <!-- Algorithmic Banner -->
+                    <div style="background: linear-gradient(90deg, #f0fdf4 0%, #eff6ff 100%); border: 1px solid #bfdbfe; border-radius: var(--radius-lg); padding: 20px 28px; margin-bottom: 26px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
+                        <div>
+                            <div style="display: flex; align-items: center; gap: 12px;">
+                                <h3 style="font-size: 1.25rem; color: var(--text-primary); font-weight: 800;">Academic Merit Leaderboard</h3>
+                                <span class="tech-chip indigo">Custom Merge Sort O(n log n)</span>
+                            </div>
+                            <p style="font-size: 0.84rem; color: var(--text-secondary); margin-top: 4px;">
+                                Deterministic Tie-Breakers: 1. Total Marks &rarr; 2. Subject 1 &rarr; 3. Subject 2 &rarr; 4. Lower Roll Number
+                            </p>
+                        </div>
+                        <div style="display: flex; gap: 12px;">
+                            <select class="field-select" id="rankings-filter-dept" style="width: 200px; padding: 7px 12px; font-size: 0.85rem;">
+                                <option value="">All Departments</option>
+                                <option value="Computer Science & Engineering">Computer Science & Engg</option>
+                                <option value="Information Technology">Information Technology</option>
+                                <option value="Electronics & Communication">Electronics & Comm</option>
+                                <option value="Mechanical Engineering">Mechanical Engineering</option>
+                                <option value="Civil Engineering">Civil Engineering</option>
+                            </select>
+                            <select class="field-select" id="rankings-filter-sem" style="width: 140px; padding: 7px 12px; font-size: 0.85rem;">
+                                <option value="">All Semesters</option>
+                                <option value="Semester 1">Semester 1</option>
+                                <option value="Semester 2">Semester 2</option>
+                                <option value="Semester 3">Semester 3</option>
+                                <option value="Semester 4">Semester 4</option>
+                                <option value="Semester 5">Semester 5</option>
+                                <option value="Semester 6">Semester 6</option>
+                                <option value="Semester 7">Semester 7</option>
+                                <option value="Semester 8">Semester 8</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Top 3 Podium Highlights -->
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-bottom: 26px;" id="podium-highlight-deck">
+                        <!-- Rendered dynamically -->
+                    </div>
+
+                    <!-- Full Rankings Table -->
+                    <div class="glass-box">
+                        <div class="glass-box-head">
+                            <div class="head-title-group">
+                                <h3>Full Competition Rankings</h3>
+                                <span class="tech-chip cyan" id="rankings-count-chip">104 Ranked</span>
+                            </div>
+                        </div>
+                        <div class="glass-box-body" style="padding: 0;">
+                            <div class="table-responsive">
+                                <table class="academic-table">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 75px;">Rank</th>
+                                            <th>Student Name</th>
+                                            <th>Roll No</th>
+                                            <th>Department</th>
+                                            <th>Semester</th>
+                                            <th>Sub 1 (Tie #1)</th>
+                                            <th>Sub 2 (Tie #2)</th>
+                                            <th>Total</th>
+                                            <th>%</th>
+                                            <th>Grade</th>
+                                            <th style="text-align: right;">Transcript</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="rankings-table-tbody">
+                                        <!-- Injected dynamically -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- =========================================================
+                     7. RESULT CARD VIEW (Institutional Grade Sheet)
+                     ========================================================= -->
+                <section class="view-panel" id="view-result-card">
+                    <div class="no-print" style="margin-bottom: 22px; display: flex; justify-content: space-between; align-items: center; max-width: 860px; margin-left: auto; margin-right: auto;">
+                        <div style="display: flex; gap: 14px; align-items: center;">
+                            <label class="field-label" style="margin-bottom: 0;">Select Student Record:</label>
+                            <select class="field-select" id="transcript-student-picker" style="width: 320px; padding: 8px 14px;">
+                                <!-- Options populated dynamically -->
+                            </select>
+                        </div>
+                        <button class="btn-cta" id="btn-print-transcript-doc">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+                            <span>Print / Save as PDF</span>
+                        </button>
+                    </div>
+
+                    <!-- Printable Transcript Sheet -->
+                    <div class="transcript-canvas">
+                        <div class="transcript-document" id="printable-certificate">
+                            <div class="transcript-crest-head">
+                                <div class="crest-title">State Technological University</div>
+                                <div class="crest-subtitle">Office of the Controller of Examinations • Official Grade Sheet</div>
+                                <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 6px;">Academic Session 2026–2027 • Regular Examinations</div>
+                            </div>
+
+                            <div class="meta-record-quad" id="transcript-meta-grid">
+                                <!-- Populated dynamically -->
+                            </div>
+
+                            <div class="table-responsive" style="margin-bottom: 28px;">
+                                <table class="academic-table" style="border: 1px solid var(--border-subtle);">
+                                    <thead>
+                                        <tr>
+                                            <th>Course Code</th>
+                                            <th>Course Title</th>
+                                            <th>Max Marks</th>
+                                            <th>Min Pass</th>
+                                            <th>Marks Obtained</th>
+                                            <th>Grade</th>
+                                            <th>Grade Point</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="transcript-subject-tbody">
+                                        <!-- Injected dynamically -->
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; padding: 18px; border-radius: var(--radius-md); background: var(--bg-card-subtle); border: 1px solid var(--border-subtle); text-align: center;">
+                                <div>
+                                    <div style="font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase;">Total Aggregate</div>
+                                    <div id="tc-total" style="font-size: 1.35rem; font-weight: 800; color: var(--text-primary);">---</div>
+                                </div>
+                                <div>
+                                    <div style="font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase;">Percentage</div>
+                                    <div id="tc-pct" style="font-size: 1.35rem; font-weight: 800; color: var(--text-primary);">---</div>
+                                </div>
+                                <div>
+                                    <div style="font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase;">Cumulative Grade</div>
+                                    <div id="tc-grade" style="font-size: 1.35rem; font-weight: 800; color: var(--accent-green);">---</div>
+                                </div>
+                                <div>
+                                    <div style="font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase;">Cohort Rank</div>
+                                    <div id="tc-rank" style="font-size: 1.35rem; font-weight: 800; color: var(--accent-amber);">---</div>
+                                </div>
+                            </div>
+
+                            <div class="transcript-stamps">
+                                <div class="stamp-pod">
+                                    <div class="stamp-rule"></div>
+                                    <div style="font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase;">Evaluator Signature</div>
+                                </div>
+                                <div class="stamp-pod">
+                                    <div style="width: 72px; height: 72px; border: 2px dashed var(--border-subtle); border-radius: 50%; margin: 0 auto 10px; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; color: var(--text-muted);">
+                                        SEAL
+                                    </div>
+                                    <div style="font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase;">University Seal</div>
+                                </div>
+                                <div class="stamp-pod">
+                                    <div class="stamp-rule"></div>
+                                    <div style="font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase;">Controller of Exams</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- =========================================================
+                     8. REPORTS VIEW (Analytics Charts)
+                     ========================================================= -->
+                <section class="view-panel" id="view-reports">
+                    <div class="dual-grid" style="grid-template-columns: 1fr 1fr; margin-bottom: 26px;">
+                        <!-- Chart 1: Grade Distribution -->
+                        <div class="glass-box">
+                            <div class="glass-box-head">
+                                <div class="head-title-group">
+                                    <h3>Grade Distribution Breakdown</h3>
+                                </div>
+                            </div>
+                            <div class="glass-box-body">
+                                <canvas id="chart-grade-dist" style="max-height: 290px;"></canvas>
+                            </div>
+                        </div>
+
+                        <!-- Chart 2: Subject Averages -->
+                        <div class="glass-box">
+                            <div class="glass-box-head">
+                                <div class="head-title-group">
+                                    <h3>Subject Average Scores</h3>
+                                </div>
+                            </div>
+                            <div class="glass-box-body">
+                                <canvas id="chart-subject-avg" style="max-height: 290px;"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Department Benchmarks Table -->
+                    <div class="glass-box">
+                        <div class="glass-box-head">
+                            <div class="head-title-group">
+                                <h3>Department Academic Benchmarks</h3>
+                            </div>
+                        </div>
+                        <div class="glass-box-body" style="padding: 0;">
+                            <div class="table-responsive">
+                                <table class="academic-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Department</th>
+                                            <th>Enrolled Count</th>
+                                            <th>Average Percentage</th>
+                                            <th>Highest Score</th>
+                                            <th>Pass Division %</th>
+                                            <th>Department Top Scorer</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="dept-benchmark-tbody">
+                                        <!-- Injected dynamically -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- =========================================================
+                     9. DATA STRUCTURE (HASH) VISUALIZER VIEW
+                     ========================================================= -->
+                <section class="view-panel" id="view-hash-structure">
+                    <!-- Interactive Search Simulator -->
+                    <div class="glass-box" style="margin-bottom: 26px;">
+                        <div class="glass-box-head" style="flex-wrap: wrap; gap: 14px;">
+                            <div>
+                                <h3 style="font-size: 1.25rem; font-weight: 800; color: var(--text-primary);">Interactive Hash Trace Simulator</h3>
+                                <p style="font-size: 0.84rem; color: var(--text-secondary); margin-top: 3px;">
+                                    Observe how <code>h(k) = k mod 31</code> resolves to a bucket index and traverses the separate chain node-by-node.
+                                </p>
+                            </div>
+                            <div style="font-family: var(--font-code); font-size: 0.88rem; color: var(--accent-cyan);">
+                                Table Capacity M = 31 (Prime)
+                            </div>
+                        </div>
+                        <div class="glass-box-body">
+                            <div style="display: flex; gap: 14px; align-items: center; max-width: 600px;">
+                                <input type="number" class="field-input" id="sim-trace-input" placeholder="Enter Roll Number to trace (e.g. 102)..." min="1">
+                                <button class="btn-cta" id="btn-run-hash-trace">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                                    <span>Visualize Hash Search</span>
+                                </button>
+                            </div>
+
+                            <div style="margin-top: 20px; display: flex; flex-direction: column; gap: 10px;" id="sim-step-deck">
+                                <div style="padding: 12px 18px; border-radius: var(--radius-md); background: var(--bg-card-subtle); border-left: 3px solid var(--accent-cyan); font-family: var(--font-code); font-size: 0.85rem; color: var(--text-secondary);">
+                                    Click <strong>Visualize Hash Search</strong> to inspect the mathematical hash computation and step-by-step chain traversal.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 31 Buckets Grid -->
+                    <div class="glass-box">
+                        <div class="glass-box-head">
+                            <div class="head-title-group">
+                                <h3>Bucket Array & Separate Chains (M = 31)</h3>
+                                <span class="tech-chip indigo">Separate Chaining</span>
+                            </div>
+                            <div style="display: flex; gap: 18px; font-size: 0.78rem;">
+                                <span style="display: flex; align-items: center; gap: 6px;"><span style="width: 10px; height: 10px; border-radius: 2px; background: var(--accent-indigo);"></span> Occupied</span>
+                                <span style="display: flex; align-items: center; gap: 6px;"><span style="width: 10px; height: 10px; border-radius: 2px; background: var(--accent-amber);"></span> Collisions (>1)</span>
+                                <span style="display: flex; align-items: center; gap: 6px;"><span style="width: 10px; height: 10px; border-radius: 2px; background: #e2e8f0;"></span> Empty</span>
+                            </div>
+                        </div>
+                        <div class="glass-box-body">
+                            <div class="bucket-deck-grid" id="visualizer-bucket-grid">
+                                <!-- 31 bucket pods rendered dynamically -->
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- =========================================================
+                     10. ABOUT SYSTEM & VIVA GUIDE VIEW
+                     ========================================================= -->
+                <section class="view-panel" id="view-about-system">
+                    <div class="dual-grid" style="grid-template-columns: 1fr 1fr; margin-bottom: 26px;">
+                        <!-- Complexity Matrix -->
+                        <div class="glass-box">
+                            <div class="glass-box-head">
+                                <div class="head-title-group">
+                                    <h3>DSA Complexity Matrix</h3>
+                                </div>
+                            </div>
+                            <div class="glass-box-body" style="padding: 0;">
+                                <div class="table-responsive">
+                                    <table class="academic-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Operation</th>
+                                                <th>Average Case</th>
+                                                <th>Worst Case</th>
+                                                <th>Auxiliary Space</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td><strong>Hash Search</strong></td>
+                                                <td><span style="color: var(--accent-green); font-weight: 800;">O(1)</span></td>
+                                                <td><span style="color: var(--accent-red);">O(n)</span> (All keys in 1 bucket)</td>
+                                                <td>O(1)</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>Hash Insert</strong></td>
+                                                <td><span style="color: var(--accent-green); font-weight: 800;">O(1)</span></td>
+                                                <td><span style="color: var(--accent-red);">O(n)</span> (Chain duplicate check)</td>
+                                                <td>O(1) per node</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>Hash Delete</strong></td>
+                                                <td><span style="color: var(--accent-green); font-weight: 800;">O(1)</span></td>
+                                                <td><span style="color: var(--accent-red);">O(n)</span></td>
+                                                <td>O(1)</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>Merge Sort (Rankings)</strong></td>
+                                                <td><span style="color: var(--accent-cyan); font-weight: 800;">O(n log n)</span></td>
+                                                <td><span style="color: var(--accent-cyan); font-weight: 800;">O(n log n)</span></td>
+                                                <td>O(n) auxiliary</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- System Architecture -->
+                        <div class="glass-box">
+                            <div class="glass-box-head">
+                                <div class="head-title-group">
+                                    <h3>Integrated Database Architecture</h3>
+                                </div>
+                            </div>
+                            <div class="glass-box-body" style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.6;">
+                                <p style="margin-bottom: 12px;">
+                                    <strong>Full-Stack Zero-Dependency Architecture:</strong>
+                                </p>
+                                <ul style="padding-left: 20px; display: flex; flex-direction: column; gap: 8px;">
+                                    <li><strong>SQLite Database:</strong> Persistent relational table <code>students</code> and <code>audit_logs</code> via Node.js built-in <code>node:sqlite</code> (zero npm packages required).</li>
+                                    <li><strong>dataset.csv Integration:</strong> The database seeds automatically from <code>dataset.csv</code>, and any new insert, edit, or delete automatically rewrites <code>dataset.csv</code> in real-time.</li>
+                                    <li><strong>In-Memory Hash Table:</strong> 31 prime buckets with Separate Chaining providing $O(1)$ roll number queries.</li>
+                                    <li><strong>Custom Merge Sort:</strong> Stable divide-and-conquer algorithm enforcing multi-tier tie-breakers (Total &rarr; Sub1 &rarr; Sub2 &rarr; RollNo).</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Viva Cheat-Sheet -->
+                    <div class="glass-box">
+                        <div class="glass-box-head">
+                            <div class="head-title-group">
+                                <h3>College Viva Voce Q&A Guide</h3>
+                                <span class="tech-chip cyan">Examination Ready</span>
+                            </div>
+                        </div>
+                        <div class="glass-box-body" style="display: flex; flex-direction: column; gap: 16px;">
+                            <div style="background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 18px; box-shadow: var(--shadow-sm);">
+                                <h4 style="color: var(--text-primary); font-size: 0.98rem; margin-bottom: 6px;">Q1: Why did you choose Separate Chaining over Open Addressing (Linear Probing)?</h4>
+                                <p style="font-size: 0.86rem; color: var(--text-secondary);">
+                                    <strong>Answer:</strong> Separate chaining handles load factors greater than 1 without clustering breakdown. Deletions in separate chaining are simple linked list unlinks without requiring complex tombstone/dummy markers that degrade open addressing performance.
+                                </p>
+                            </div>
+
+                            <div style="background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 18px; box-shadow: var(--shadow-sm);">
+                                <h4 style="color: var(--text-primary); font-size: 0.98rem; margin-bottom: 6px;">Q2: Why is the Hash Table capacity chosen as a Prime Number (M = 31)?</h4>
+                                <p style="font-size: 0.86rem; color: var(--text-secondary);">
+                                    <strong>Answer:</strong> When hash keys have arithmetic patterns (such as sequential roll numbers 101, 102, 103...), choosing a prime table size guarantees that the greatest common divisor between step sizes and the capacity is 1, distributing keys uniformly across all buckets and minimizing clustering.
+                                </p>
+                            </div>
+
+                            <div style="background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 18px; box-shadow: var(--shadow-sm);">
+                                <h4 style="color: var(--text-primary); font-size: 0.98rem; margin-bottom: 6px;">Q3: Why use Merge Sort for student ranking instead of Quick Sort?</h4>
+                                <p style="font-size: 0.86rem; color: var(--text-secondary);">
+                                    <strong>Answer:</strong> Merge Sort guarantees $O(n \log n)$ worst-case time complexity, whereas Quick Sort can degrade to $O(n^2)$ if an unbalanced pivot is chosen on sorted academic data. Furthermore, Merge Sort is naturally stable, which preserves deterministic secondary tie-breaking orders.
+                                </p>
+                            </div>
+
+                            <div style="background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 18px; box-shadow: var(--shadow-sm);">
+                                <h4 style="color: var(--text-primary); font-size: 0.98rem; margin-bottom: 6px;">Q4: How does the application integrate SQLite with dataset.csv?</h4>
+                                <p style="font-size: 0.86rem; color: var(--text-secondary);">
+                                    <strong>Answer:</strong> On startup, SQLite checks its count and seeds from <code>dataset.csv</code> if empty. On every write operation (Insert, Update, Delete), SQLite executes an atomic SQL transaction and immediately flushes the updated records to <code>dataset.csv</code>, keeping both the relational database and the CSV dataset synchronized.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </main>
+        </div>
+    </div>
+
+    <!-- Toast Notifications Deck -->
+    <div class="toast-deck" id="toast-deck"></div>
+
+    <!-- Universal Dual-Mode Script Loader: Communicates with REST API & supports direct file:// execution -->
+    <script src="js/bundle.js"></script>
+</body>
+</html>
